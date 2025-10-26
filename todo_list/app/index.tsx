@@ -1,3 +1,4 @@
+import TodosWrapper         from '@/components/TodosWrapper';
 import { StatusBar }        from 'expo-status-bar';
 import { View, StyleSheet } from 'react-native';
 
@@ -11,6 +12,7 @@ export default function Index() {
     >
       <StatusBar style={'light'} />
       <Header />
+      <TodosWrapper />
     </View>
   );
 }
