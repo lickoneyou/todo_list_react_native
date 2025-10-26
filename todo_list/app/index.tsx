@@ -6,6 +6,8 @@ import Header     from '@/components/Header';
 import { COLORS } from '@/constants/colors';
 
 export default function Index() {
+
+
   return (
     <View
       style={styles.container}

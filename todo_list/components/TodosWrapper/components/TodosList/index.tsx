@@ -6,10 +6,14 @@ import type { Todo } from '@/types';
 
 interface ITodosList {
   todos: Todo[];
+  updatedTodoCompleted: (id: number) => void;
 }
 
 const TodosList: React.FC<ITodosList> = function(props) {
-  const { todos } = props;
+  const {
+          todos,
+          updatedTodoCompleted,
+        } = props;
 
   return (
     <View>
@@ -17,7 +21,12 @@ const TodosList: React.FC<ITodosList> = function(props) {
         data={todos}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TodoItem id={item.id} isCompleted={item.isCompleted} title={item.title} />
+          <TodoItem
+            id={item.id}
+            isCompleted={item.isCompleted}
+            title={item.title}
+            updatedTodoCompleted={updatedTodoCompleted}
+          />
         )}
       />
     </View>

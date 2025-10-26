@@ -1,9 +1,11 @@
-import { useMemo } from 'react';
-import { View }    from 'react-native';
+import { styles }                         from '@/components/TodosWrapper/styles';
+import { useCallback, useMemo, useState } from 'react';
+import { View }                           from 'react-native';
 
-import type { Todo } from '@/types'
+import type { Todo } from '@/types';
 
-import TodosList from '@/components/TodosWrapper/components/TodosList';
+import TodosCount from '@/components/TodosWrapper/components/TodosCount';
+import TodosList  from '@/components/TodosWrapper/components/TodosList';
 
 const TodosWrapper = function() {
   const defaultTodos: Todo[] = useMemo(() => {
@@ -26,9 +28,32 @@ const TodosWrapper = function() {
     ];
   }, []);
 
+  const [todos, setTodos] = useState(defaultTodos);
+
+  const updatedTodoCompleted = useCallback((id: number) => {
+    setTodos((prev) => {
+      return prev.map((todo) => {
+        if (todo.id === id) {
+          return ({
+            ...todo,
+            isCompleted: !todo.isCompleted,
+          });
+        }
+        return todo;
+      });
+    });
+  }, []);
+
   return (
-    <View>
-      <TodosList todos={defaultTodos} />
+    <View style={styles.todos_list_container}>
+      <TodosCount
+        allTodosCount={todos.length}
+        completedTodosCount={todos.filter((todo) => todo.isCompleted).length}
+      />
+      <TodosList
+        updatedTodoCompleted={updatedTodoCompleted}
+        todos={todos}
+      />
     </View>
   );
 };
