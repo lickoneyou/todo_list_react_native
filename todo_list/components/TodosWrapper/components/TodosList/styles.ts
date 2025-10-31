@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  todos_wrapper: {
-    alignItems: 'flex-start',
-    width:      '100%',
+  todos_list: {
+    paddingTop: 15,
   },
 });

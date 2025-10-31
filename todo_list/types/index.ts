@@ -3,3 +3,9 @@ export interface Todo {
   isCompleted: boolean,
   title: string,
 }
+
+export interface ICurrentTodoAction {
+  id: number,
+  title?: string,
+  type: 'delete' | 'edit',
+}
